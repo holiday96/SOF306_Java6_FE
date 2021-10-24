@@ -1,0 +1,61 @@
+$sidebar-bg-color: rgba(2, 24, 85, 0.39);
+$sidebar-color: #b3b8d4;
+$icon-bg-color: rgba(90, 82, 82, 0.26);
+$icon-size: 35px;
+$submenu-bg-color: rgba(41, 2, 85, 0.39);
+$submenu-color: #b3b8d4;
+@import "~react-pro-sidebar/dist/scss/styles.scss";
+.pro-sidebar {
+    background-image: url("../image/bg-sidebar.jpg") !important;
+    background-size: cover !important;
+}
+
+.pro-sidebar-header>.title {
+    padding: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pro-sidebar-header>.title>span,
+.pro-sidebar-header>.title>a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #b3b8d4;
+}
+
+.pro-sidebar-footer>.title {
+    padding: 20px 24px;
+}
+
+.pro-sidebar-footer>.title>.footer-btn {
+    transition: width 0.3s;
+    width: 150px;
+    padding: 1px 15px;
+    border-radius: 40px;
+    background: hsla(0, 0%, 100%, 0.05);
+    color: #adadad;
+    text-decoration: none;
+    margin: 0 auto;
+    height: 35px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pro-sidebar-footer>.title>.footer-btn:hover {
+    color: #dee2ec;
+}
+
+.pro-sidebar-footer>.title>.footer-btn>span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: 5px;
+}
