@@ -44,9 +44,37 @@ const Login = (props) => {
   };
 
   const onSubmit = async (data) => {
+    console.log(data);
+    loginToken(data);
+  };
+
+  const loginToken = async (data) => {
     await axios
-      .post(`http://localhost:8081/api/user/login`, data)
+      .post(
+        `http://localhost:8081/api/token?username=${data.username}&password=${data.password}`
+      )
       .then((res) => {
+        if (res) {
+          sessionStorage.setItem("access_token", res.data.access_token);
+          sessionStorage.setItem("refresh_token", res.data.refresh_token);
+          getLoginUserData(data);
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const getLoginUserData = async (data) => {
+    await axios
+      .post(`http://localhost:8081/api/user/login`, data, {
+        headers: {
+          access_token: "Bearer " + sessionStorage.getItem("access_token"),
+          refresh_token: "Bearer " + sessionStorage.getItem("refresh_token"),
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
         if (res) {
           if (!res.data.verifyCode) {
             if (res.data.active) {
@@ -54,7 +82,7 @@ const Login = (props) => {
                 title: `Hi ${res.data.fullname}!`,
                 text: "Let's checkout some item 😉",
                 icon: "success",
-                timer: 3000,
+                // timer: 3000,
                 timerProgressBar: true,
                 backdrop: `
                   rgba(3, 86, 252,0.2)
